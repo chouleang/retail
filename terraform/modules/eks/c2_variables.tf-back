@@ -109,17 +109,3 @@ variable "node_disk_size" {
   default     = 20
 }
 
-variable "vpc_id" {
-  description = "VPC ID where EKS cluster will be deployed"
-  type        = string
-}
-
-variable "private_subnet_ids" {
-  description = "List of private subnet IDs for EKS node groups"
-  type        = list(string)
-}
-
-variable "public_subnet_ids" {
-  description = "List of public subnet IDs for ALB/LBC"
-  type        = list(string)
-}
