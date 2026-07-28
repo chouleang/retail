@@ -15,7 +15,7 @@ data "terraform_remote_state" "eks" {
 # Output the EKS eks_cluster_name and eks_cluster_id from the remote EKS state
 # --------------------------------------------------------------------
 output "eks_cluster_name" {
-  value = data.terraform_remote_state.eks.outputs.eks_cluster_name
+  value = var.eks_cluster_name
 }
 
 output "eks_cluster_id" {

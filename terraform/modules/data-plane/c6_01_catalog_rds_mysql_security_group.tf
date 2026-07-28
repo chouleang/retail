@@ -2,7 +2,7 @@
 resource "aws_security_group" "rds_mysql_sg" {
   name        = "${local.name}-rds-mysql-sg"
   description = "Allow MySQL access from EKS cluster"
-  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
+  vpc_id      = var.vpc_id.vpc_id
 
   ingress {
     description = "Allow MySQL from EKS cluster security group"
@@ -10,7 +10,7 @@ resource "aws_security_group" "rds_mysql_sg" {
     to_port     = 3306
     protocol    = "tcp"
     security_groups = [
-      data.terraform_remote_state.eks.outputs.eks_cluster_security_group_id
+      var.eks_cluster_security_group_id
     ]
   }
 

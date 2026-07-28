@@ -18,7 +18,7 @@
 # authenticate with AWS to retrieve secrets.
 
 resource "aws_eks_pod_identity_association" "orders" {
-  cluster_name    = data.terraform_remote_state.eks.outputs.eks_cluster_name
+  cluster_name    = var.eks_cluster_name
   namespace       = "default"
   service_account = "orders"
   role_arn        = aws_iam_role.orders_postgresql_getsecrets.arn
