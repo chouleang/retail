@@ -1,7 +1,7 @@
 resource "aws_security_group" "redis_sg" {
   name        = "${local.name}-redis-sg"
   description = "Allow EKS cluster to access ElastiCache Redis"
-  vpc_id      = var.vpc_id.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port                = 6379

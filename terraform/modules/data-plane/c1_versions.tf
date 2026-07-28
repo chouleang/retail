@@ -11,13 +11,13 @@ terraform {
   }
 
   # Remote backend configuration using S3 
-  backend "s3" {
-    bucket         = "dorwpioa"         
-    key            = "retail-persistent-endpoints/dev/terraform.tfstate"            
-    region         = "ap-southeast-5"                            
-    encrypt        = true                                   
-    use_lockfile   = true     
-  }
+ # backend "s3" {
+    #bucket         = "dorwpioa"         
+    #key            = "retail-persistent-endpoints/dev/terraform.tfstate"            
+    #region         = "ap-southeast-5"                            
+    #encrypt        = true                                   
+   # use_lockfile   = true     
+  #}
 }
 
 provider "aws" {

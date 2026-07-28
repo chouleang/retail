@@ -2,7 +2,7 @@
 resource "aws_security_group" "rds_mysql_sg" {
   name        = "${local.name}-rds-mysql-sg"
   description = "Allow MySQL access from EKS cluster"
-  vpc_id      = var.vpc_id.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "Allow MySQL from EKS cluster security group"

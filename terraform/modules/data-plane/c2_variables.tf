@@ -63,7 +63,10 @@ variable "eks_cluster_id" {
   description = "ID of the EKS cluster"
   type        = string
 }
-
+variable "eks_cluster_security_group_id" {
+  description = "Security group ID of the EKS cluster"
+  type        = string
+}
 variable "eks_oidc_issuer_url" {
   description = "OIDC issuer URL of the EKS cluster"
   type        = string

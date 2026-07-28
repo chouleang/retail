@@ -3,7 +3,7 @@
 resource "aws_security_group" "rds_postgresql_sg" {
   name        = "${local.name}-rds-postgresql-sg"
   description = "Allow RDS PostgreSQL access from EKS cluster"
-  vpc_id      = var.vpc_id.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     description      = "Allow RDS PostgreSQL from EKS Cluster"
