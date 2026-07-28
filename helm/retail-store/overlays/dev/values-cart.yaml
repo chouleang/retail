@@ -1,0 +1,26 @@
+image:
+  repository: public.ecr.aws/aws-containers/retail-store-sample-cart
+  pullPolicy: IfNotPresent
+  tag: 1.3.0
+
+dynamodb:
+  create: false
+
+app:
+  persistence:
+    provider: dynamodb
+    dynamodb:
+      tableName: Items
+      createTable: false
+      endpoint: https://dynamodb.us-west-2.amazonaws.com
+      region: us-west-2
+env:
+  - name: AWS_REGION
+    value: us-west-2
+resources:
+  requests:
+    cpu: 100m
+    memory: 500Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

@@ -1,0 +1,32 @@
+image:
+  repository: public.ecr.aws/aws-containers/retail-store-sample-ui
+  pullPolicy: IfNotPresent
+  tag: 1.3.0
+
+app:
+  theme: green
+  endpoints:
+    catalog: http://catalog:80
+    carts: http://carts:80
+    checkout: http://checkout:80
+    orders: http://orders:80
+  chat:
+    enabled: false
+
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health/liveness
+  tls: []
+  hosts: []
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 100Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

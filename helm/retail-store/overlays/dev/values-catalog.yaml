@@ -1,0 +1,26 @@
+image:
+  repository: public.ecr.aws/aws-containers/retail-store-sample-catalog
+  pullPolicy: IfNotPresent
+  tag: 1.3.0
+
+mysql:
+  create: false
+
+app:
+  persistence:
+    provider: mysql
+    endpoint: "mydb3.cmfy84y8mlfq.us-east-1.rds.amazonaws.com"       # from terraform output
+    database: "catalogdb"
+    secret:
+      create: true
+      name: catalog-db
+      username: dbadmin
+      password: "0hEyfUAVRG4xQbBu"                                  # from secret-store
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

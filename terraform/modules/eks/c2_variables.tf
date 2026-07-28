@@ -24,6 +24,10 @@ variable "business_division" {
   type        = string
   default     = "retail"
 }
+# Node Group desire nodes
+variable "desired_size" {
+  type = number
+}
 
 # --------------------------------------------------------
 # EKS Cluster Configuration
