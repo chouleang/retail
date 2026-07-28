@@ -53,4 +53,11 @@ module "data_plane" {
   eks_cluster_name              = data.terraform_remote_state.eks.outputs.eks_cluster_name
   eks_cluster_id                = data.terraform_remote_state.eks.outputs.eks_cluster_id
   eks_cluster_security_group_id = data.terraform_remote_state.eks.outputs.eks_cluster_security_group_id
+  # Backup & HA configuration (per environment)
+  rds_backup_retention_period = var.rds_backup_retention_period
+  rds_skip_final_snapshot     = var.rds_skip_final_snapshot
+  rds_deletion_protection     = var.rds_deletion_protection
+  rds_multi_az                = var.rds_multi_az
+  rds_mysql_instance_class    = var.rds_mysql_instance_class
+  rds_postgres_instance_class = var.rds_postgres_instance_class
 }

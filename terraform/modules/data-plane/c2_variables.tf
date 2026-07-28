@@ -72,3 +72,35 @@ variable "eks_oidc_issuer_url" {
   type        = string
   default     = null
 }
+
+## RDS Back Up & HA Configuration
+variable "rds_backup_retention_period" {
+  description = "Number of days to retain backup (0-35)"
+  type = number
+  default = 0
+}
+variable "rds_skip_final_snapshot" {
+  description = "Skip final snapshot when destroy DB"
+  type = bool
+  default = true
+}
+variable "rds_deletion_protection" {
+  description = "Enable deletion protection"
+  type = bool
+  default = false
+}
+variable "rds_multi_az" {
+  description = "Enable Multi-AZ deployment "
+  type = bool
+  default = false
+}
+variable "rds_mysql_instance_class" {
+  description = "Instance class for RDS MySQL (catalog)"
+  type = string
+  default = "db.t3.micro"
+}
+variable "rds_postgres_instance_class" {
+  description = "Instance class for RDS PostgresSQL (Order Service)"
+  type = string
+  default = "db.t3.micro"
+}

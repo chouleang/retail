@@ -3,18 +3,18 @@ resource "aws_db_instance" "catalog_rds" {
   identifier              = "mydb3"
   engine                  = "mysql"
   engine_version          = "8.0"
-  instance_class          = "db.t3.micro"
+  instance_class          = var.rds_mysql_instance_class
   allocated_storage       = 20
   db_name                 = "catalogdb"
   username                = local.retailstore_secret_json.username
   password                = local.retailstore_secret_json.password
   db_subnet_group_name    = aws_db_subnet_group.rds_private.name
   vpc_security_group_ids  = [aws_security_group.rds_mysql_sg.id]
-  skip_final_snapshot     = true
+  skip_final_snapshot     = var.rds_skip_final_snapshot
   publicly_accessible     = false
-  delete_automated_backups = true
-  multi_az                = false
-  backup_retention_period = 1
+  delete_automated_backups = var.rds_skip_final_snapshot
+  multi_az                = var.rds_multi_az
+  backup_retention_period = var.rds_backup_retention_period
 
   tags = {
     Name = "${local.name}-catalog-rds-mysql"
