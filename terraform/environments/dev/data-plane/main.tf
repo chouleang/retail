@@ -38,6 +38,14 @@ data "terraform_remote_state" "eks" {
     region = "us-east-1"
   }
 }
+data "terraform_remote_state" "secret-store" {
+  backend = "s3"
+  config = {
+    bucket = "trfbec"
+    key    = "secret-store/dev/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
 
 module "data_plane" {
   source            = "../../../modules/data-plane"
@@ -60,4 +68,7 @@ module "data_plane" {
   rds_multi_az                = var.rds_multi_az
   rds_mysql_instance_class    = var.rds_mysql_instance_class
   rds_postgres_instance_class = var.rds_postgres_instance_class
+  # From Secret Store
+  db_secret_name = data.terraform_remote_state.secret-store.outputs.secret_name
+
 }

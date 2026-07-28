@@ -15,7 +15,6 @@ variable "aws_region" {
 variable "environment_name" {
   description = "Environment name used in resource names and tags"
   type        = string
-  default     = "section14"
 }
 
 # Business unit or department (used in tags and naming)
@@ -103,4 +102,9 @@ variable "rds_postgres_instance_class" {
   description = "Instance class for RDS PostgresSQL (Order Service)"
   type = string
   default = "db.t3.micro"
+}
+
+### Secret for DB
+variable "db_secret_name" {
+  type = string
 }
