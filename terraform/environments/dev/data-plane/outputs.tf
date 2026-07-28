@@ -49,3 +49,7 @@ output "orders_postgresql_sa_pod_identity_association_arn" {
   description = "Pod Identity Association ARN for Orders service account"
   value       = module.data_plane.orders_postgresql_sa_pod_identity_association_arn
 }
+
+output "dataplane_endpoints_secret_name" {
+  value = module.data_plane.dataplane_endpoints_secret_name
+}
