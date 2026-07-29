@@ -1,10 +1,10 @@
 aws_region        = "us-east-1"
-environment_name  = "prod"
-business_division = "ecommerce"
+environment_name  = "stagging"
+business_division = "marketplace"
 tags = {
   Terraform   = "true"
-  Project     = "ecommerce"
-  Environment = "prod"
+  Project     = "marketplace"
+  Environment = "stagging"
 }
 rds_backup_retention_period = 1
 rds_skip_final_snapshot     = true

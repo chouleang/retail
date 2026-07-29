@@ -1,6 +1,6 @@
 # RDS PostgreSQL Instance
 resource "aws_db_instance" "orders_postgres" {
-  identifier              = "orders-postgres-db"
+  identifier              = "${local.environment}-orders-postgres-db"
   engine                  = "postgres"
   engine_version          = "17.6"
   instance_class          = var.rds_postgres_instance_class

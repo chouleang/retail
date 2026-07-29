@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     bucket       = "trfbec"
-    key          = "eks/prod/terraform.tfstate"
+    key          = "eks/stagging/terraform.tfstate"
     region       = "us-east-1"
     encrypt      = true
     use_lockfile = true
@@ -22,7 +22,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
     bucket = "trfbec"
-    key    = "vpc/prod/terraform.tfstate"
+    key    = "vpc/stagging/terraform.tfstate"
     region = "us-east-1"
   }
 }

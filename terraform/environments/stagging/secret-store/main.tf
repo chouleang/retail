@@ -5,26 +5,24 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 6.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = ">=3.0"
+    }
   }
   backend "s3" {
     bucket       = "trfbec"
-    key          = "vpc/prod/terraform.tfstate"
+    key          = "secret-store/stagging/terraform.tfstate"
     region       = "us-east-1"
     encrypt      = true
     use_lockfile = true
   }
 }
-
 provider "aws" {
   region = var.aws_region
 }
-module "vpc" {
-  source = "../../../modules/vpc"
-
-  environment_name = var.environment_name
-  vpc_cidr         = var.vpc_cidr
-  #aws_region = var.aws_region
-  subnet_newbits = var.subnet_newbits
-  tags           = var.tags
-  #remotebackend = var.remotebackend
+module "secret_store" {
+  source            = "../../../modules/secret-store"
+  business_division = var.business_division
+  environment_name  = var.environment_name
 }

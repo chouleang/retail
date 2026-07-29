@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     bucket       = "trfbec"
-    key          = "vpc/prod/terraform.tfstate"
+    key          = "vpc/stagging/terraform.tfstate"
     region       = "us-east-1"
     encrypt      = true
     use_lockfile = true

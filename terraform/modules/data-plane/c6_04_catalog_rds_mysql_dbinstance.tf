@@ -1,6 +1,6 @@
 # RDS MySQL Database Instance 
 resource "aws_db_instance" "catalog_rds" {
-  identifier              = "mydb3"
+  identifier              = "${local.environment}-mydb3"
   engine                  = "mysql"
   engine_version          = "8.0"
   instance_class          = var.rds_mysql_instance_class
