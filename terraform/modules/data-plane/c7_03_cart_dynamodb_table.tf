@@ -14,8 +14,8 @@
 
 # DynamoDB Table: Items - us-west-2
 resource "aws_dynamodb_table" "items_west2" {
-  provider       = aws.west2
-  name           = "Items"
+  provider       = aws
+  name           = "${local.environment}-Items"
   billing_mode   = "PAY_PER_REQUEST"    # On-demand pricing (no capacity planning)
   hash_key       = "id"
 
@@ -41,4 +41,13 @@ resource "aws_dynamodb_table" "items_west2" {
     Environment = var.environment_name
     Component   = "Cart"
   }
+}
+output "dynamodb_table_name" {
+  description = "DynamoDB table name for Cart microservice"
+  value       = aws_dynamodb_table.items_west2.name
+}
+
+output "dynamodb_table_arn" {
+  description = "DynamoDB table ARN for Cart microservice"
+  value       = aws_dynamodb_table.items_west2.arn
 }

@@ -15,3 +15,4 @@ tags = {
 node_instance_types = ["t3.medium"]
 node_capacity_type  = "ON_DEMAND"
 node_disk_size      = 30
+desired_size = 2

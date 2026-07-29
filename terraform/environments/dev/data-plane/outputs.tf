@@ -50,6 +50,15 @@ output "orders_postgresql_sa_pod_identity_association_arn" {
   value       = module.data_plane.orders_postgresql_sa_pod_identity_association_arn
 }
 
-output "dataplane_endpoints_secret_name" {
-  value = module.data_plane.dataplane_endpoints_secret_name
+#output "dataplane_endpoints_secret_name" {
+#  value = module.data_plane.dataplane_endpoints_secret_name
+#}
+output "dynamodb_table_name" {
+  description = "DynamoDB table for Cart microservice"
+  value       = module.data_plane.dynamodb_table_name
+}
+
+output "dynamodb_table_arn" {
+  description = "DynamoDB table ARN"
+  value       = module.data_plane.dynamodb_table_arn
 }

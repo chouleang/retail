@@ -10,13 +10,13 @@ app:
   persistence:
     provider: dynamodb
     dynamodb:
-      tableName: Items
+      tableName: dev-Items
       createTable: false
-      endpoint: https://dynamodb.us-west-2.amazonaws.com
-      region: us-west-2
+      endpoint: https://dynamodb.us-east-1.amazonaws.com
+      region: us-east-1
 env:
   - name: AWS_REGION
-    value: us-west-2
+    value: us-east-1
 resources:
   requests:
     cpu: 100m
