@@ -15,10 +15,17 @@ app:
     endpoint: "dev-orders-postgres-db.cmfy84y8mlfq.us-east-1.rds.amazonaws.com:5432"   # from terraform output
     database: ordersdb
     secret:
-      create: true
-      name: orders-db
-      username: dbadmin
-      password: "0hEyfUAVRG4xQbBu"
+      create: false
+      # --- Secrets Provider (for your forked chart's new templates) ---
+secretsProvider:
+  enabled: true
+  name: orders-db                     # Name of the SecretProviderClass resource
+  secretName: retail-dev-db-secret               # This is Object name
+#  awsSecretName: "retail-dev-secret-db-aws-secret-name"  # Full AWS secret name (direct, not prefix)
+
+global:
+  environment: dev                     # Used by SPC template for namespace tagging
+  business: retail
   messaging:
     provider: sqs
     sqs:
