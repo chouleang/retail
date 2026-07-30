@@ -1,0 +1,40 @@
+image:
+  repository: public.ecr.aws/aws-containers/retail-store-sample-catalog
+  pullPolicy: IfNotPresent
+  tag: 1.3.0
+
+mysql:
+  create: false
+
+# --- ConfigMap values (used by your forked configmap template) ---
+app:
+  persistence:
+    provider: mysql
+    endpoint: "prod-mydb3.cmfy84y8mlfq.us-east-1.rds.amazonaws.com"
+    database: "catalogdb"
+    secret:
+      create: false                    # Don't create Secret via Helm — SPC handles it
+      name: catalog-db                 # Must match secretObjects.secretName in SPC
+
+# --- Secrets Provider (for your forked chart's new templates) ---
+secretsProvider:
+  enabled: true
+  name: catalog-db                     # Name of the SecretProviderClass resource
+  secretName: ecommerce-prod-db-secret               # This is Object name
+#  awsSecretName: "ecommerce-prod-secret-db-aws-secret-name"  # Full AWS secret name (direct, not prefix)
+
+global:
+  environment: prod                     # Used by SPC template for namespace tagging
+  business: ecommerce
+# --- Existing resources ---
+resources:
+  limits:
+    cpu: 512m
+    memory: 512Mi
+  requests:
+    cpu: 50m
+    memory: 128Mi
+
+serviceAccount:
+  create: true
+  name: catalog                        # Must match the IRSA role association

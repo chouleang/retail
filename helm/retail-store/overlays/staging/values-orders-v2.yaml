@@ -1,0 +1,40 @@
+image:
+  repository: public.ecr.aws/aws-containers/retail-store-sample-orders
+  pullPolicy: IfNotPresent
+  tag: 1.3.0
+
+postgresql:
+  create: false
+
+rabbitmq:
+  create: false
+
+app:
+  persistence:
+    provider: postgres
+    endpoint: "stagging-orders-postgres-db.cmfy84y8mlfq.us-east-1.rds.amazonaws.com:5432"   # from terraform output
+    database: ordersdb
+    secret:
+      create: false
+      # --- Secrets Provider (for your forked chart's new templates) ---
+secretsProvider:
+  enabled: true
+  name: orders-db                     # Name of the SecretProviderClass resource
+  secretName: marketplace-stagging-db-secret               # This is Object name
+#  awsSecretName: "retail-dev-secret-db-aws-secret-name"  # Full AWS secret name (direct, not prefix)
+
+global:
+  environment: dev                     # Used by SPC template for namespace tagging
+  business: retail
+  messaging:
+    provider: sqs
+    sqs:
+      queueName: "marketplace-stagging-orders-queue"                    # from terraform output
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
